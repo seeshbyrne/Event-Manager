@@ -1,5 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-    background-color: #FEF0E5;
+    /* background-color: #FEF0E5; */
+    background-color: rgb(72, 72, 72);
+    color: white;
   }
 
   /* base.css */

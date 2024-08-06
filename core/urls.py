@@ -6,6 +6,8 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('accounts/signup/', views.signup, name='signup'),
 
+    path('events/<int:event_id>/add_guests/', views.add_guests, name='add-guests'),
+
     path('events/', views.event_index, name='event-index'),
     path('events/<int:event_id>/', views.event_detail, name='event-detail'),
     path('events/create/', views.EventCreate.as_view(), name='event-create'),
@@ -13,4 +15,5 @@ urlpatterns = [
     path('events/<int:pk>/delete/', views.EventDelete.as_view(), name='event-delete'),
 
     path('events/<int:event_id>/add_comment/', views.add_comment, name='add-comment'),
+
 ]

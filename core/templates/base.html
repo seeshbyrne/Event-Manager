@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <title>Event Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title >Event Manager</title>
     {% block head %}
     {% endblock %}
+
 </head>
 <body>
     <header>
@@ -24,9 +25,12 @@
                 <li><a href="{% url 'event-create' %}">Add Event</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li>
-                    <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+                    <form id="logout-form" method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button>Log Out</button>
+                        <button>
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Log Out
+                        </button>
                     </form>
                 </li>
                 {% else %}

@@ -9,19 +9,30 @@
 
     <div class="event-details">
         <h1>{{ event.name }}</h1>
+        <p class="text-8xl">{{ event.category }}</p>
+        <h2>Event created by: {{ event.user }}</h2>
         <h2>Date: {{ event.date }}</h2>
-        <p>Location: {{ event.location }}</p>
+        <p class="text-7xl">Location: {{ event.location }}</p>
         <p>Description: {{ event.description }}</p>
-        <p>Guests: </p>
+        <p class="text-8xl">Guests: 
+            {% for guest in event.guests.all %}
+                {{ guest.username }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
         <p>**pic to go here**</p>
 
+        {% if user.id == event.user.id %}
         <div class="event-actions">
             <a href="{% url 'event-update' event.id %}" class="btn warn">Edit event</a>
             <a href="{% url 'event-delete' event.id %}" class="btn danger">Delete event</a>
+            <a href="{% url 'add-guests' event.id %}" class="btn warn">Invite Guests</a>
         </div>
+        {% endif %}
+
     </div>
 </section>
 
+<!-- COMMENTS  -->
 <div class="comments-container">
     <section class="comments">
       <div class="subsection-title">
@@ -51,8 +62,5 @@
       </table>
     </section>
   </div>
-
-
-
 
 {% endblock %}
