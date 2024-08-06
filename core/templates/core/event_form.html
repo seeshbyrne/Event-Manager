@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    {% if event %}
+        <h1>Edit {{ event.name }}</h1>
+    {% else %}    
+        <h1>Add Event</h1>
+    {% endif %}
+    <img src="{% static '' %}" alt="">
+</div>
+
+<form method="post" class="form-container">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }} 
+    </table>
+    {% if object %}
+        <button class="btn submit">Update Event</button>
+    {% else %}
+        <button class="btn submit">Create Event</button>
+    {% endif %}
+</form>
+{% endblock %}
+

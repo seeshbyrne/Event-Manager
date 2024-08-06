@@ -1,0 +1,60 @@
+body {
+    background-color: #FEF0E5;
+  }
+
+  /* base.css */
+
+/* Style for the header and navigation bar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #7e7575;
+  color: #fff;
+}
+
+.header-logo-container a img {
+  height: 50px;
+  width: auto;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ff9800;
+}
+
+nav ul li form {
+  display: inline;
+}
+
+nav ul li form button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+nav ul li form button:hover {
+  color: #ff9800;
+}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
+{% block content %}
+<section class="event-container">
+    <a href="{% url 'event-index' %}">Back to All Events</a>
+
+    <div class="event-details">
+        <h1>{{ event.name }}</h1>
+        <h2>Date: {{ event.date }}</h2>
+        <p>Location: {{ event.location }}</p>
+        <p>Description: {{ event.description }}</p>
+        <p>Guests: </p>
+        <p>**pic to go here**</p>
+
+        <div class="event-actions">
+            <a href="{% url 'event-update' event.id %}" class="btn warn">Edit event</a>
+            <a href="{% url 'event-delete' event.id %}" class="btn danger">Delete event</a>
+        </div>
+    </div>
+</section>
+
+<div class="comments-container">
+    <section class="comments">
+      <div class="subsection-title">
+        <h2>Comments</h2>
+      </div>
+
+      <h3>Add a Comment</h3>
+        <form 
+        method="post" 
+        action="{% url 'add-comment' event.id %}" 
+        class="subsection-content" 
+        autocomplete="off">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button class="btn submit">Add Comment</button>
+        </form>
+
+      <table>
+        <tbody>
+          {% for comment in event.comment_set.all %}
+            <tr>
+              <td> {{comment.comment}}</td>
+              <td></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+
+
+
+{% endblock %}

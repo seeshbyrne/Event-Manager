@@ -1,0 +1,60 @@
+/* detail.css */
+
+/* Styling the event container */
+.event-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Styling the event details */
+.event-details h1 {
+    font-size: 2em;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.event-details h2 {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+}
+
+.event-details p {
+    font-size: 1em;
+    color: #666;
+    margin-top: 10px;
+    padding: 5px 0;
+}
+
+/* Styling the event actions */
+.event-actions {
+    margin-top: 20px;
+}
+
+.event-actions .btn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.event-actions .btn.warn {
+    background-color: #ff9800;
+    border: 1px solid #e68a00;
+}
+
+.event-actions .btn.danger {
+    background-color: #f44336;
+    border: 1px solid #d32f2f;
+}
+
+/* Add any additional styling as needed */

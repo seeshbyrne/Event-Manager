@@ -1,0 +1,28 @@
+/* detail.css */
+
+/* Styling the event container */
+.card {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Styling the event details */
+.event-details h1 {
+    font-size: 2em;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.card-content h2 {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+}
+
