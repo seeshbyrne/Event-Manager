@@ -5,14 +5,12 @@
 <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 
-
 {% block content %}
-<section class="logo-container">
   <div class="event-container">
-    <img src="{% static '' %}" alt="" />
+    <img src="{% static 'images/background.jpg' %}" alt="crowd" class="background-img">
+    <p class="overlay-text">Plan. Manage. Celebrate.</p>
   </div>
-  <img src="{% static '' %}" alt="" />
-</section>
+
 
 {% if not user.is_authenticated %}
 <section>

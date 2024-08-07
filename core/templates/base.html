@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <title >Event Manager</title>
     {% block head %}
@@ -18,7 +22,7 @@
                 <img src="" alt="Event Manager Logo">
             </a>
         </div>
-        <nav>
+        <nav class="nav-menu">
             <ul>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'event-index' %}">All Events</a></li>

@@ -16,7 +16,7 @@ CATEGORIES = (
 # Events
 class Event(models.Model):
     name = models.CharField(max_length=256)
-    date = models.CharField(max_length=256)
+    date = models.DateField('Date')
     location = models.CharField(max_length=256)
     description = models.TextField(max_length=256)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -38,6 +38,7 @@ class Event(models.Model):
 class Comment(models.Model):
     comment = models.TextField(max_length=256)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Comment by  for {self.event}"

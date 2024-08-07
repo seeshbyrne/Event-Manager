@@ -10,15 +10,21 @@
     <div class="event-details">
         <h1>{{ event.name }}</h1>
         <p class="text-8xl">{{ event.category }}</p>
-        <h2>Event created by: {{ event.user }}</h2>
+        <p><i class="fa-solid fa-user"></i><strong> {{ event.user }}</strong> invited you</p>
         <h2>Date: {{ event.date }}</h2>
-        <p class="text-7xl">Location: {{ event.location }}</p>
+        <p class="text-7xl"> <i class="fa-solid fa-location-dot"></i> Location: {{ event.location }}</p>
         <p>Description: {{ event.description }}</p>
-        <p class="text-8xl">Guests: 
+
+        <p class="text-8xl guests-info" id="guestsInfo">
+            <i class="fa-solid fa-users"></i>
+            {{ event.guests.all|length }} people are going:
             {% for guest in event.guests.all %}
-                {{ guest.username }}{% if not forloop.last %}, {% endif %}
+            {{ guest.username }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
         </p>
+
+        <p><i class="fa-solid fa-lock"></i> Private : Only guests who are invited</p>
+
         <p>**pic to go here**</p>
 
         {% if user.id == event.user.id %}
@@ -35,32 +41,30 @@
 <!-- COMMENTS  -->
 <div class="comments-container">
     <section class="comments">
-      <div class="subsection-title">
-        <h2>Comments</h2>
-      </div>
-
-      <h3>Add a Comment</h3>
-        <form 
-        method="post" 
-        action="{% url 'add-comment' event.id %}" 
-        class="subsection-content" 
-        autocomplete="off">
+        <form method="post" action="{% url 'add-comment' event.id %}" class="comment-form" autocomplete="off">
             {% csrf_token %}
             {{ comment_form.as_p }}
             <button class="btn submit">Add Comment</button>
         </form>
 
-      <table>
-        <tbody>
-          {% for comment in event.comment_set.all %}
-            <tr>
-              <td> {{comment.comment}}</td>
-              <td></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+        <table>
+            <tbody>
+                {% for comment in event.comment_set.all %}
+                <tr>
+                    <td>
+                        <div class="comment-bubble">
+                            <div class="comment-user-icon">
+                                {{ comment.user.username|slice:":1" }}
+                                <span class="tooltip">{{ comment.user.username }}</span>
+                            </div>
+                            <div class="comment-content">{{ comment.comment }}</div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
-  </div>
+</div>
 
 {% endblock %}

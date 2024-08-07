@@ -1,5 +1,4 @@
-
-
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 /* Styling the event container */
 .card {
     padding: 20px;
@@ -7,7 +6,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     max-width: 800px;
-    margin: auto;
+    margin: 20px auto;
 }
 
 /* Styling the event details */
@@ -26,3 +25,10 @@
     padding-bottom: 8px;
 }
 
+.events-all-header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+}

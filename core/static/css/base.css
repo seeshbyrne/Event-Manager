@@ -1,16 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
     /* background-color: #FEF0E5; */
-    background-color: rgb(72, 72, 72);
+    background-color: #47383D;
     color: white;
+    font-family: "Raleway", sans-serif;
   }
 
-  /* base.css */
 
-/* Style for the header and navigation bar */
 header {
   display: flex;
   justify-content: space-between;
@@ -19,6 +16,7 @@ header {
   border-radius: 20px;
   background-color: #7e7575;
   color: #fff;
+  letter-spacing: 1px;
 }
 
 .header-logo-container a img {

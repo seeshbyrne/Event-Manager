@@ -58,3 +58,124 @@
 }
 
 /* Add any additional styling as needed */
+
+
+
+.comments-container {
+    margin-top: 40px;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-form {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    max-width: 600px;
+    min-height: 100px; /* Adjust the height as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allow vertical resizing */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.comment-form button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #47383D; /* Adjust the color as needed */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #ff9800; /* Adjust the hover color as needed */
+}
+
+.comments table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+}
+
+.comments table td {
+    padding: 10px;
+    border: none;
+}
+
+.comment-bubble {
+    background-color: #f1f1f1; /* Light grey bubble background */
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+    color: #333; /* Adjust text color as needed */
+    display: flex;
+    align-items: center;
+}
+
+.comment-bubble::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px; /* Adjust position to move the tail */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #f1f1f1 transparent transparent; /* Bubble tail color */
+    transform: translateY(-50%);
+}
+
+.comments table td:first-child {
+    width: 100%;
+}
+
+.comment-user-icon {
+    background-color: #ff9800; /* Icon background color */
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin-right: 10px;
+    position: relative;
+}
+
+.comment-user-icon .tooltip {
+    visibility: hidden;
+    width: auto;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.comment-user-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.comment-content {
+    flex: 1;
+}
