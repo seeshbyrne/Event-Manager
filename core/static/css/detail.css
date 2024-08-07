@@ -1,6 +1,4 @@
 
-
-/* Styling the event container */
 .event-container {
     padding: 20px;
     background-color: #f9f9f9;
@@ -10,7 +8,7 @@
     margin: auto;
 }
 
-/* Styling the event details */
+/* event details */
 .event-details h1 {
     font-size: 2em;
     color: #333;
@@ -19,10 +17,10 @@
 }
 
 .event-details h2 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #555;
     margin-top: 10px;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
     padding-bottom: 8px;
 }
 
@@ -33,9 +31,12 @@
     padding: 5px 0;
 }
 
-/* Styling the event actions */
+/* event actions */
 .event-actions {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .event-actions .btn {
@@ -45,6 +46,27 @@
     color: #fff;
     display: inline-block;
     margin-right: 10px;
+    
+}
+
+.add-guest-button {
+    background-color: #7bb377;
+    border: 1px solid #7bb377;
+    border-radius: 5px; /* Ensure consistent border radius */
+    height: 39px;
+    width: 39px;
+}
+
+#Addguests {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.add-guest-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a small shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .event-actions .btn.warn {
@@ -57,12 +79,26 @@
     border: 1px solid #d32f2f;
 }
 
-/* Add any additional styling as needed */
+.event-actions .btn.warn, 
+.event-actions .btn.danger {
+    padding: 8px 12px; /* Adjust padding as needed */
+    font-size: 14px; /* Adjust font size as needed */
+}
 
+.btn.warn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a small shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
 
+.btn.danger:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a small shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
 
+/* COMMENTS */
 .comments-container {
     margin-top: 40px;
+    position: relative;
 }
 
 .comments {
@@ -92,15 +128,17 @@
     display: block;
     margin: 10px 0;
     padding: 10px 20px;
-    background-color: #47383D; /* Adjust the color as needed */
-    color: white;
+    background-color: #822242;
+    /* color: white; */
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .comment-form button:hover {
-    background-color: #ff9800; /* Adjust the hover color as needed */
+    background-color: #ff9800; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a small shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .comments table {
@@ -136,12 +174,28 @@
     transform: translateY(-50%);
 }
 
+.comment-bubble .edit {
+    position: absolute;
+    right: 60px;
+    top: 5px;
+}
+
+.comment-bubble .delete {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+#id_comment {
+    color: #333;
+}
+
 .comments table td:first-child {
     width: 100%;
 }
 
 .comment-user-icon {
-    background-color: #ff9800; /* Icon background color */
+    background-color: #ff9800;
     color: white;
     border-radius: 50%;
     width: 40px;
@@ -178,4 +232,128 @@
 
 .comment-content {
     flex: 1;
+}
+
+form textarea {
+    color: black;
+}
+
+
+
+/* GUEST  */
+.guest-user-icon {
+    background-color: #ff9800; /* Icon background color */
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin-right: 10px;
+    position: relative;
+}
+
+.guest-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.guest-list-button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: font-size 0.3s ease, font-weight 0.3s ease; /* Smooth transition for font size and weight */
+}
+
+.guest-list-button:hover {
+    font-weight: bold; /* Makes the text bold */
+    font-size: 1.01em; /* Makes the text bigger */
+}
+
+
+
+
+
+/* MODAL  */
+
+
+/* Modal Container */
+#guestListModal, #editEventModal {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+/* Modal Container Visible */
+#guestListModal.show, #editEventModal.show {
+    opacity: 1;
+    transform: translateY(0)
+}
+
+.hidden {
+    display: none;
+}
+
+#editEventModal.hidden {
+    opacity: 0;
+}
+
+#editEventModal {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-50px);
+/* Adjust the maximum width as needed */
+    width: 50%; /* Set the desired width */
+    height: auto; /* Allow the height to adjust based on content */
+    max-height: 90vh; /* Ensure it doesn't exceed viewport height */
+    overflow-y: auto; /* Add scroll if content overflows */
+/* Modal background color */
+    padding: 20px; /* Add padding for content */
+    border-radius: 8px; /* Rounded corners */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000; /* Ensure it is on top */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+}
+
+.close-button:hover,
+.invite-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a small shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invite-button {
+    margin-top: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    transform: scale(1.1); /* Scales the icon to be 10% bigger */
+}
+
+.save-btn:hover {
+    /* background-color:  */
+    color: #b6fcb8;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    /* background-color:  */
+    color: #fca49d;
+    transition: background-color 0.5s ease; 
 }

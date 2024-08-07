@@ -16,7 +16,7 @@
     top: 40%; /* Vertically centers the text */
     left: 50%; /* Horizontally centers the text */
     transform: translate(-50%, -50%);
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 60px;
     font-family: "Raleway", sans-serif;
     letter-spacing: 2px;
@@ -24,4 +24,8 @@
     margin: 0;
     padding: 0;
     white-space: nowrap;
+}
+
+form input {
+    color: black;
 }

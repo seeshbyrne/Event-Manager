@@ -7,5 +7,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "bootstrap": "^5.3.3"
-  }
+  },
+  "scripts": {
+  "build:css": "postcss static/css/tailwind.css -o static/css/main.css"
+}
 }

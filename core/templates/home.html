@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
-
+{% load static tailwind_tags %}
 {% block head %}
-
 <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 
@@ -11,17 +9,4 @@
     <img src="{% static 'images/background.jpg' %}" alt="crowd" class="background-img">
     <p class="overlay-text">Plan. Manage. Celebrate.</p>
   </div>
-
-
-{% if not user.is_authenticated %}
-<section>
-  <form action="{% url 'home' %}" method="post" class="login">
-    <h1>Login</h1>
-    {% csrf_token %} 
-    {{ form.as_p }} 
-    <input type="hidden" name="next" value="{{ next }}" />
-    <button class="btn submit">Login</button>
-  </form>
-</section>
-{% endif %}
 {% endblock %}

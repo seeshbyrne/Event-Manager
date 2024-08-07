@@ -33,7 +33,6 @@ class Event(models.Model):
         return reverse('event-detail', kwargs={'event_id': self.id})
 
 
-
 # Comments
 class Comment(models.Model):
     comment = models.TextField(max_length=256)

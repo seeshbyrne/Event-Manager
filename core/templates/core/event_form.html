@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
-
+{% load static tailwind_tags %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/form.css' %}">
 {% endblock %}
@@ -12,14 +11,11 @@
     {% else %}    
         <h1>Add Event</h1>
     {% endif %}
-    <img src="{% static '' %}" alt="">
 </div>
 
 <form method="post" class="form-container">
     {% csrf_token %}
-    <table>
-        {{ form.as_table }} 
-    </table>
+    {{ form.as_p }} 
     {% if object %}
         <button class="btn submit">Update Event</button>
     {% else %}

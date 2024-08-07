@@ -1,0 +1,23 @@
+#id_description input {
+    color: #333;
+}
+.form-control {
+    border-radius: 10px;
+}
+
+td {
+    color: #333;
+}
+
+#id_location, #id_date, #id_name, #id_category {
+    border-radius: 10px;
+    color: black;
+}
+
+#id_guests #text {
+    color: black;
+}
+
+form .invite-button {
+    color: black;
+}

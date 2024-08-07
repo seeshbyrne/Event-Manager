@@ -1,44 +1,118 @@
 {% extends 'base.html' %}
-{% load static %}
-{% load bootstrap4 %}
+{% load static tailwind_tags %}
 {% block head %}
 
 <link rel="stylesheet" href="{% static 'css/detail.css' %}">
 {% endblock %}
 {% block content %}
-<section class="event-container">
-    <a href="{% url 'event-index' %}">Back to All Events</a>
 
+<a href="{% url 'event-index' %}" class="text-white">
+    <i class="fa-solid fa-arrow-left text-white my-5 ml-5 mr-2"></i></i>
+    Back to All Events
+</a>
+
+<section class="event-container">
     <div class="event-details">
-        <h1>{{ event.name }}</h1>
-        <p class="text-8xl">{{ event.category }}</p>
-        <p><i class="fa-solid fa-user"></i><strong> {{ event.user }}</strong> invited you</p>
-        <h2>Date: {{ event.date }}</h2>
-        <p class="text-7xl"> <i class="fa-solid fa-location-dot"></i> Location: {{ event.location }}</p>
+        <h1 class="font-extrabold">{{ event.name }}</h1>
+        <h2>{{ event.date|date:"D, F j, Y" }}</h2>
+        <p><i class="fa-solid fa-user mr-3"></i><strong> {{ event.user }}</strong> invited you</p>
+
+        <p class="text-7xl"> <i class="fa-solid fa-location-dot mr-3"></i> Location: {{ event.location }}</p>
         <p>Description: {{ event.description }}</p>
 
-        <p class="text-8xl guests-info" id="guestsInfo">
-            <i class="fa-solid fa-users"></i>
-            {{ event.guests.all|length }} people are going:
-            {% for guest in event.guests.all %}
-            {{ guest.username }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </p>
+        <!-- Button for guest list modal -->
+        <button type="button" class="text-white guest-list-button" onclick="openGuestListModal()">
+            <p class="text-8xl guests-info" id="guestsInfo">
+                <i class="fa-solid fa-users mr-3"></i>
+                {{ event.guests.all|length }} people are going
+            </p>
+        </button>
 
-        <p><i class="fa-solid fa-lock"></i> Private : Only guests who are invited</p>
+        <!-- Guest List Modal -->
+        <div id="guestListModal"
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg p-8 max-w-sm w-full">
+                <h2 class="text-2xl mb-4">Guest List</h2>
+                <ul class="list-none pl-5 mb-4 text-slate-950">
+                    {% for guest in event.guests.all %}
+                    <li>
+                        <div class="guest-list">
+                            <div class="guest-user-icon">
+                                {{ guest.username|slice:":1" }}
+                            </div>
+                            {{ guest.username }}
+                        </div>
+                    </li>
+                    {% empty %}
+                    <li>No guests yet.</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded" onclick="closeGuestListModal()">
+                    Close
+                </button>
+            </div>
+        </div>
 
-        <p>**pic to go here**</p>
+        <p><i class="fa-solid fa-lock mr-3"></i> Private : Only guests who are invited</p>
+
+
 
         {% if user.id == event.user.id %}
         <div class="event-actions">
-            <a href="{% url 'event-update' event.id %}" class="btn warn">Edit event</a>
-            <a href="{% url 'event-delete' event.id %}" class="btn danger">Delete event</a>
-            <a href="{% url 'add-guests' event.id %}" class="btn warn">Invite Guests</a>
+            <a href="{% url 'event-update' event.id %}" class="btn warn"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="{% url 'event-delete' event.id %}" class="btn danger"><i class="fa-solid fa-trash"></i></a>
+
+            <!-- add guest button modal -->
+            <button type="button" class="text-white add-guest-button" onclick="openAddGuestModal()">
+                <p class="guests-info" id="Addguests">
+                    <i class="fa-solid fa-user-plus text-white"></i>
+                </p>
+            </button>
+
+            <!-- Add Guest Modal -->
+            <div id="AddGuestModal"
+                class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+                <div class="bg-white rounded-lg p-8 max-w-sm w-full">
+                    <h2 class="text-2xl mb-4">Add Guest</h2>
+                    <form method="post" action="{% url 'add-guests' event.id %}" class="add-guest text-black">
+                        {% csrf_token %}
+                        {{ guest_form.as_p }}
+
+                        <!-- List of users who are not yet invited -->
+                        <div class="mb-4">
+                            <h3 class="text-xl mb-2">Not Invited Yet</h3>
+                            <ul>
+                                {% for user in all_users %}
+                                <li>
+                                    <input type="checkbox" name="guests" value="{{ user.id }}">
+                                    {{ user.username }}
+                                </li>
+                                {% empty %}
+                                <li>Everyone is invited</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="button-container">
+                            <button type="submit" class="invite-button btn submit bg-emerald-600 text-black mb-5">
+                                <i class="fa-solid fa-plus"></i> Add
+                            </button>
+                            <button type="button" class="close-button px-4 py-2 bg-blue-500 text-white rounded"
+                                onclick="closeAddGuestModal()">
+                                Close
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
         {% endif %}
 
     </div>
 </section>
+
+
 
 <!-- COMMENTS  -->
 <div class="comments-container">
@@ -46,23 +120,53 @@
         <form method="post" action="{% url 'add-comment' event.id %}" class="comment-form" autocomplete="off">
             {% csrf_token %}
             {{ comment_form.as_p }}
-            <button class="btn submit">Add Comment</button>
+            <button class="btn submit">Add Comment</i></button>
         </form>
 
         <table>
             <tbody>
                 {% for comment in event.comment_set.all %}
-                <tr>
+                <tr id="comment-{{ comment.id }}">
                     <td>
                         <div class="comment-bubble">
                             <div class="comment-user-icon">
                                 {{ comment.user.username|slice:":1" }}
                                 <span class="tooltip">{{ comment.user.username }}</span>
                             </div>
-                            <div class="comment-content">{{ comment.comment }}</div>
+                            <div class="comment-content text-black" id="comment-content-{{ comment.id }}">
+                                {{ comment.comment }}
+                            </div>
+
+                            <!-- Edit and Delete Buttons -->
+                            {% if user == comment.user %}
+                            <button type="button" onclick="showEditForm({{ comment.id }})" class="btn edit-btn ml-2">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <form method="post" action="{% url 'delete-comment' comment.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn delete-btn ml-3">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                            {% endif %}
                         </div>
                     </td>
                 </tr>
+
+                <!-- Edit Form -->
+                {% if user == comment.user %}
+                <tr id="edit-form-{{ comment.id }}" class="hidden">
+                    <td>
+                        <form method="post" action="{% url 'edit-comment' comment.id %}">
+                            {% csrf_token %}
+                            <textarea name="comment" rows="4" class="w-full">{{ comment.comment }}</textarea>
+                            <button type="submit" class="btn submit save-btn">Save</button>
+                            <button type="button" onclick="hideEditForm({{ comment.id }})"
+                                class="btn cancel-btn ml-2">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endif %}
                 {% endfor %}
             </tbody>
         </table>
@@ -70,35 +174,55 @@
 </div>
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<script>
+    // GUEST MODAL
+    function openGuestListModal() {
+        const modal = document.getElementById('guestListModal');
+        modal.classList.remove('hidden');
+        // Use a timeout to ensure the transition happens
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    }
 
+    function closeGuestListModal() {
+        const modal = document.getElementById('guestListModal');
+        modal.classList.remove('show');
+        // Wait for the transition to complete before hiding the modal
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300); // Match this duration with the CSS transition duration
+    }
+
+    // INVITE GUESTS MODAL
+    function openAddGuestModal() {
+        const modal = document.getElementById('AddGuestModal');
+        modal.classList.remove('hidden');
+        // Use a timeout to ensure the transition happens
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    }
+
+    function closeAddGuestModal() {
+        const modal = document.getElementById('AddGuestModal');
+        modal.classList.remove('show');
+        // Wait for the transition to complete before hiding the modal
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300); // Match this duration with the CSS transition duration
+    }
+
+    // edit comment 
+    function showEditForm(commentId) {
+        document.getElementById(`comment-content-${commentId}`).classList.add('hidden');
+        document.getElementById(`edit-form-${commentId}`).classList.remove('hidden');
+    }
+
+    function hideEditForm(commentId) {
+        document.getElementById(`comment-content-${commentId}`).classList.remove('hidden');
+        document.getElementById(`edit-form-${commentId}`).classList.add('hidden');
+    }
+</script>
 
 {% endblock %}
-
-
-
-
-
-

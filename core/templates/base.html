@@ -1,23 +1,24 @@
-{% load static %}
-{% load bootstrap4 %}
+{% load static tailwind_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title >Event Manager</title>
+    <title>Event Manager</title>
+    {% tailwind_css %}
     {% block head %}
     {% endblock %}
-
 </head>
+
 <body>
     <header>
         <div class="header-logo-container">
             <a href="/">
-                <img src="" alt="Event Manager Logo">
+                <h1>EventEase</h1>
             </a>
         </div>
         <nav class="nav-menu">
@@ -37,8 +38,8 @@
                 </li>
                 {% else %}
                 <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'home' %}">Login</a></li>
-                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><button id="signupBtn" class="btn submit">Sign Up</button></li>
+                <li><button id="loginBtn" class="btn submit">Login</button></li>
                 {% endif %}
             </ul>
         </nav>
@@ -47,7 +48,83 @@
         {% block content %}
         {% endblock %}
     </main>
-<script src="{% static 'js/bootstrap.js' %}"></script>
 
+    {% if not user.is_authenticated %}
+
+    <!-- Login Modal -->
+<div id="loginModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <form action="{% url 'home' %}" method="post" class="login">
+            <h1>Login</h1>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <button class="btn submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div id="signupModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="page-header">
+            <h1>Sign Up</h1>
+        </div>
+        {% if error_message %}
+            <p class="red-text">{{ error_message }}</p>
+        {% endif %}
+        <form method="post" class="form-container" autocomplete="off">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button class="btn submit">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Get modal elements
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+
+    // Get open modal buttons
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+
+    // Get close buttons
+    const closeBtns = document.querySelectorAll('.close-btn');
+
+    // Listen for open click
+    loginBtn.addEventListener('click', () => {
+        loginModal.classList.remove('hidden');
+    });
+
+    signupBtn.addEventListener('click', () => {
+        signupModal.classList.remove('hidden');
+    });
+
+    // Listen for close click
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+            signupModal.classList.add('hidden');
+        });
+    });
+
+    // Listen for outside click
+    window.addEventListener('click', (event) => {
+        if (event.target === loginModal) {
+            loginModal.classList.add('hidden');
+        }
+        if (event.target === signupModal) {
+            signupModal.classList.add('hidden');
+        }
+    });
+</script>
+    {% endif %}
 </body>
+
 </html>
