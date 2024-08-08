@@ -6,18 +6,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>Sign Up</h1>
-    <img src="{% static '' %}" alt="">
+
+<div class="signup-event-container">
+    <img src="{% static 'images/background.jpg' %}" alt="crowd" class="signup-background-img">
+    <p class="overlay-text">Plan. Manage. Celebrate.</p>
 </div>
-{% if error_message %}
+
+<div class="signup-container">
+    {% if error_message %}
     <p class="red-text">{{ error_message }}</p>
-{% endif %}
-<form method="post" class="form-container" autocomplete="off">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table}}
-    </table>
-    <button class="btn submit">Sign Up</button>
-</form>
+    {% endif %}
+    <form method="post" class="signup-form-container" autocomplete="off">
+        <h1 class="mb-6 mt-2 font-bold text-4xl">Sign Up</h1>
+        {% csrf_token %}
+        <table>
+            {{ form.as_table}}
+        </table>
+        <button class="btn submit sign-up-button">Lets Go</button>
+    </form>
+</div>
+
 {% endblock %}

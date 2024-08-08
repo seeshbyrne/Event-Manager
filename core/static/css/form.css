@@ -1,6 +1,53 @@
-#id_description input {
-    color: #333;
+.page-header {
+    text-align: center;
+    margin-bottom: 20px;
 }
+
+.signup-page-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.signup-form-container {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto; */
+
+    position: absolute; /* Position it in front of the background image */
+    top: 20%; /* Adjust this value to move it further up or down */
+    left: 50%;
+    transform: translateX(-50%); /* Center the form horizontally */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    z-index: 2; 
+}
+
+
+/* Existing styles */
+#id_description {
+    color: #000000;
+}
+
 .form-control {
     border-radius: 10px;
 }
@@ -20,4 +67,117 @@ td {
 
 form .invite-button {
     color: black;
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+form label {
+    margin-bottom: 8px;
+}
+
+
+.event-container {
+    position: relative;
+    text-align: center;
+}
+
+.signup-event-container {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.background-img {
+    width: 100%;
+    height: auto;
+    opacity: 75%;
+    display: block;
+}
+
+.signup-background-img {
+    width: 100%;
+    height: auto;
+    opacity: 75%;
+    display: block;
+    position: relative; /* Make sure it doesn't move */
+    z-index: 1;
+}
+
+form input {
+    color: black;
+}
+
+#id_password1_helptext,
+#id_password2_helptext,
+#id_username_helptext {
+    color: white;
+    font-size: 14px;
+}
+
+.sign-up-button {
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    transition: text-shadow 0.3s ease;
+}
+
+.sign-up-button:hover {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); 
+}
+
+.signup-event-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay with 50% opacity */
+    z-index: 2;
+}
+
+.signup-form-container {
+    background-color: rgba(0, 0, 0, 0.4); 
+    border: 1px solid #888; 
+    border-radius: 8px;
+}
+
+.signup-form-container tr {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#id_password1,
+#id_password2,
+#id_username {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.overlay-text {
+    position: absolute; /* Positions the text absolutely within the event-container */
+    top: 40%; /* Vertically centers the text */
+    left: 50%; /* Horizontally centers the text */
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    font-size: 60px;
+    font-family: "Raleway", sans-serif;
+    letter-spacing: 2px;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
 }

@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
     {% block head %}
     {% endblock %}
 </head>
-
 <body>
     <header>
         <div class="header-logo-container">
@@ -27,6 +25,7 @@
                 <li><a href="{% url 'event-index' %}">All Events</a></li>
                 <li><a href="{% url 'event-create' %}">Add Event</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
+                
                 <li>
                     <form id="logout-form" method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
@@ -38,93 +37,111 @@
                 </li>
                 {% else %}
                 <li><a href="{% url 'about' %}">About</a></li>
-                <li><button id="signupBtn" class="btn submit">Sign Up</button></li>
-                <li><button id="loginBtn" class="btn submit">Login</button></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a id="loginBtn" class="btn submit" href="#">Login</a></li>
+                <!-- <li><button id="loginBtn" class="btn submit">Login</button></li> -->
                 {% endif %}
             </ul>
         </nav>
     </header>
     <main>
         {% block content %}
+
+
+
+        
         {% endblock %}
     </main>
 
     {% if not user.is_authenticated %}
-
     <!-- Login Modal -->
-<div id="loginModal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <form action="{% url 'home' %}" method="post" class="login">
-            <h1>Login</h1>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="hidden" name="next" value="{{ next }}" />
-            <button class="btn submit">Login</button>
-        </form>
-    </div>
-</div>
-
-<!-- Sign Up Modal -->
-<div id="signupModal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div class="page-header">
-            <h1>Sign Up</h1>
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <form id="login-form" action="{% url 'home' %}" method="post" class="login">
+                <h1>Login</h1>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="next" value="{{ next }}" />
+                <button class="btn submit">Login</button>
+            </form>
         </div>
-        {% if error_message %}
-            <p class="red-text">{{ error_message }}</p>
-        {% endif %}
-        <form method="post" class="form-container" autocomplete="off">
-            {% csrf_token %}
-            <table>
-                {{ form.as_table }}
-            </table>
-            <button class="btn submit">Sign Up</button>
-        </form>
     </div>
-</div>
 
-<script>
-    // Get modal elements
-    const loginModal = document.getElementById('loginModal');
-    const signupModal = document.getElementById('signupModal');
+    <!-- <script>
+        // Get modal element
+        const modal = document.getElementById('loginModal');
+        // Get open modal button
+        const loginBtn = document.getElementById('loginBtn');
+        // Get close button
+        const closeBtn = document.querySelector('.close-btn');
 
-    // Get open modal buttons
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
-
-    // Get close buttons
-    const closeBtns = document.querySelectorAll('.close-btn');
-
-    // Listen for open click
-    loginBtn.addEventListener('click', () => {
-        loginModal.classList.remove('hidden');
-    });
-
-    signupBtn.addEventListener('click', () => {
-        signupModal.classList.remove('hidden');
-    });
-
-    // Listen for close click
-    closeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            loginModal.classList.add('hidden');
-            signupModal.classList.add('hidden');
+        // Listen for open click
+        loginBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
         });
-    });
 
-    // Listen for outside click
-    window.addEventListener('click', (event) => {
-        if (event.target === loginModal) {
-            loginModal.classList.add('hidden');
-        }
-        if (event.target === signupModal) {
-            signupModal.classList.add('hidden');
-        }
-    });
-</script>
+        // Listen for close click
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // Listen for outside click
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    </script> -->
+
+
+    <script>
+        // Get modal element
+        const modal = document.getElementById('loginModal');
+        // Get open modal button
+        const loginBtn = document.getElementById('loginBtn');
+        // Get close button
+        const closeBtn = document.querySelector('.close-btn');
+
+        // Handle login button click
+        loginBtn.addEventListener('click', (event) => {
+            const currentUrl = window.location.pathname;
+            const homeUrl = '/'; // Assuming home URL is root URL
+
+            if (currentUrl !== homeUrl) {
+                // Set a flag to indicate the login button was clicked
+                sessionStorage.setItem('loginClicked', 'true');
+                window.location.href = homeUrl;
+            } else {
+                modal.classList.remove('hidden');
+            }
+        });
+
+        // Check if the modal should be shown on page load
+        window.addEventListener('load', () => {
+            const loginClicked = sessionStorage.getItem('loginClicked');
+
+            if (loginClicked === 'true') {
+                sessionStorage.removeItem('loginClicked'); // Clear the flag
+                modal.classList.remove('hidden');
+            }
+        });
+
+        // Listen for close click
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // Listen for outside click
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    </script>
     {% endif %}
+
+
 </body>
 
 </html>

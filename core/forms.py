@@ -16,7 +16,7 @@ class InviteGuestForm(forms.Form):
 class EventCreateForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'date', 'location', 'description', 'guests', 'category']
+        fields = ['category','name', 'date', 'location', 'description', 'guests']
         widgets = {
             'name': forms.TextInput(attrs={
                 'placeholder': 'Enter the event name',

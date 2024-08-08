@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static tailwind_tags %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="calendar-navigation">
+    <a href="{% url 'calendar' year=year|add:" -1" month=month_number %}" class="button-link"><i
+            class="fa-solid fa-arrow-left"></i> Year</a>
+    <a href="{% url 'calendar' year=year month=month_number|add:" -1" %}" class="button-link"><i
+            class="fa-solid fa-arrow-left"></i> Month</a>
+    <a href="{% url 'calendar' year=year month=month_number|add:" 1" %}" class="button-link">Month <i
+            class="fa-solid fa-arrow-right"></i> </a>
+    <a href="{% url 'calendar' year=year|add:" 1" month=month_number %}" class="button-link">Year <i
+            class="fa-solid fa-arrow-right"></i> </a>
+</div>
+
+<div class="top-container">
+    <a href="{% url 'event-index' %}" class="list-view text-bold">View List <i class="fa-solid fa-list ml-1"></i></a>
+    <div class="exact-day">Today: {{ exact_day }}</div>
+</div>
+
+<div class="calendar-container">
+    {{ cal|safe }}
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const events = JSON.parse('{{ events|escapejs }}');
+        console.log(events);
+
+        events.forEach(event => {
+            const date = new Date(event.date);
+            const day = date.getDate();
+            const cell = document.querySelector(`td[data-day="${day}"]`);
+            if (cell) {
+                const eventElement = document.createElement('div');
+                eventElement.classList.add('event');
+                eventElement.innerHTML = `<a href="{% url 'event-detail' 0 %}".replace(0, event.id)">${event.name}</a>`;
+                cell.appendChild(eventElement);
+            }
+        });
+    });
+</script>
+
+{% endblock %}

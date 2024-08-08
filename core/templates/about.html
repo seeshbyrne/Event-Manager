@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
-{% block content %}
-    <h1>About the Event Manager</h1>
-    <hr>
-    <p class="page-content">
-    </p>
+{% load static tailwind_tags %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
 {% endblock %}
+{% block content %}
+    <hr>
+    <div class="">
+        <img src="{% static 'images/second-img.jpg' %}" alt="crowd" class="background-two">
+        <p class="page-content">Welcome to EventEase, where you can effortlessly organize your life with ease. Sign up to create events, invite guests, and keep all your events in one convenient spot. Our user-friendly interface ensures that planning and managing your events is simple and enjoyable. Join us today and take the hassle out of event organization!</p>
+    </div>
+{% endblock %}
+

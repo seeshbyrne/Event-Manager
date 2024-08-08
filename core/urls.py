@@ -5,7 +5,8 @@ urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('about/', views.about, name='about'),
     path('accounts/signup/', views.signup, name='signup'),
-
+    
+    path('calendar/<int:year>/<int:month>/', views.calendar_view, name='calendar'),
     path('events/<int:event_id>/add_guests/', views.add_guests, name='add-guests'),
 
     path('events/', views.event_index, name='event-index'),

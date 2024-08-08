@@ -9,12 +9,16 @@
 {% block content %}
 <section class="events-all-header">
     <h1 class="font-bold my-10">My Upcoming Events</h1>
-
     <!-- Search Bar -->
     <form method="get" action="{% url 'event-index' %}" class="search-form">
         <input type="text" name="q" value="{{ query }}" placeholder="Search events..." class="search-input">
         <button type="submit" class="search-button">Search</button>
     </form>
+
+    <!-- Calendar Button -->
+    <div class="calendar-button-container my-10">
+        <a href="{% url 'calendar' year=current_year month=current_month %}" class="calendar-button text-bold">View Calendar <i class="fa-regular fa-calendar"></i></a>
+    </div>
 
 </section>
 
