@@ -8,7 +8,10 @@ class CommentForm(forms.ModelForm):
         fields = ['comment']
 
 class GuestForm(forms.Form):
-    guests = forms.ModelMultipleChoiceField(queryset=User.objects.all(), widget=forms.CheckboxSelectMultiple)
+    guests = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(), 
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'guest-checkbox'})
+    )
 
 class InviteGuestForm(forms.Form):
     email = forms.EmailField(label='Guest Email', max_length=254)

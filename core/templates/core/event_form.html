@@ -7,7 +7,7 @@
 {% block content %}
 <div class="page-header">
     {% if event %}
-        <h1>Edit {{ event.name }}</h1>
+        <h1 class="text-bold">Edit {{ event.name }}</h1>
     {% else %}    
         <h1>Add Event</h1>
     {% endif %}
@@ -17,9 +17,9 @@
     {% csrf_token %}
     {{ form.as_p }} 
     {% if object %}
-        <button class="btn submit">Update Event</button>
+        <button class="btn submit update-event-button">Update Event</button>
     {% else %}
-        <button class="btn submit">Create Event</button>
+        <button class="btn submit create-event-button">Create Event</button>
     {% endif %}
 </form>
 {% endblock %}

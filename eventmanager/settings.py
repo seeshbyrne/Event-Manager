@@ -92,11 +92,12 @@ WSGI_APPLICATION = 'eventmanager.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    # {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'eventmanagerproject',
-    # }
+    'default': 
+    # dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eventmanagerproject',
+    }
 }
 
 # Password validation
@@ -126,6 +127,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

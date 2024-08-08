@@ -3,6 +3,10 @@
     margin-bottom: 20px;
 }
 
+.page-header h1 {
+    margin-top: 20px;
+}
+
 .signup-page-header {
     text-align: center;
     margin-bottom: 20px;
@@ -21,20 +25,10 @@
 }
 
 .signup-form-container {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto; */
-
-    position: absolute; /* Position it in front of the background image */
-    top: 20%; /* Adjust this value to move it further up or down */
+    position: absolute; 
+    top: 20%;
     left: 50%;
-    transform: translateX(-50%); /* Center the form horizontally */
+    transform: translateX(-50%);
     padding: 20px;
     border-radius: 10px;
     width: 100%;
@@ -105,7 +99,7 @@ form label {
     height: auto;
     opacity: 75%;
     display: block;
-    position: relative; /* Make sure it doesn't move */
+    position: relative;
     z-index: 1;
 }
 
@@ -140,7 +134,7 @@ form input {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Dark overlay with 50% opacity */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 2;
 }
 
@@ -168,7 +162,7 @@ form input {
 }
 
 .overlay-text {
-    position: absolute; /* Positions the text absolutely within the event-container */
+    position: absolute;
     top: 40%; /* Vertically centers the text */
     left: 50%; /* Horizontally centers the text */
     transform: translate(-50%, -50%);
@@ -180,4 +174,35 @@ form input {
     margin: 0;
     padding: 0;
     white-space: nowrap;
+}
+
+.form-check {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 3 columns */
+    gap: 10px; /* Space between checkboxes */
+    justify-items: center; /* Center items horizontally in each grid cell */
+    align-items: center;
+}
+
+.form-check #text {
+    text-align: center;
+}
+
+.form-check input {
+    margin: 0 auto;
+}
+
+.update-event-button,
+.create-event-button {
+    letter-spacing: 1px;
+    background-color: #7bb377;
+    border: 1px solid #7bb377;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.update-event-button:hover,
+.create-event-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }

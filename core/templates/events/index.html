@@ -8,16 +8,20 @@
 
 {% block content %}
 <section class="events-all-header">
-    <h1 class="font-bold my-10">My Upcoming Events</h1>
-    <!-- Search Bar -->
-    <form method="get" action="{% url 'event-index' %}" class="search-form">
-        <input type="text" name="q" value="{{ query }}" placeholder="Search events..." class="search-input">
-        <button type="submit" class="search-button">Search</button>
-    </form>
+    <div class="index-background">
+        <img src="{% static 'images/third-img.jpg' %}" alt="crowd" class="index-background-img">
+        <h1 class="font-bold my-10">My Upcoming Events</h1>
+        <!-- Search Bar -->
+        <form method="get" action="{% url 'event-index' %}" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search events..." class="search-input">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
 
     <!-- Calendar Button -->
     <div class="calendar-button-container my-10">
-        <a href="{% url 'calendar' year=current_year month=current_month %}" class="calendar-button text-bold">View Calendar <i class="fa-regular fa-calendar"></i></a>
+        <a href="{% url 'calendar' year=current_year month=current_month %}" class="calendar-button text-bold">View
+            Calendar <i class="fa-regular fa-calendar"></i></a>
     </div>
 
 </section>
@@ -30,7 +34,8 @@
             <a href="{% url 'event-detail' event.id %}">
                 <div class="card-content">
                     <h2 class="card-title font-extrabold">
-                        <i class="{% if event.category == 'Other' %}fa-solid fa-ellipsis{% elif event.category == 'Work' %}fa-solid fa-briefcase{% elif event.category == 'Sport' %}fa-solid fa-futbol{% elif event.category == 'Birthday' %}fa-solid fa-birthday-cake{% elif event.category == 'Wedding' %}fa-solid fa-ring{% elif event.category == 'Anniversary' %}fa-solid fa-heart{% elif event.category == 'Concert' %}fa-solid fa-music{% elif event.category == 'Holiday' %}fa-solid fa-umbrella-beach{% endif %}"></i>
+                        <i
+                            class="{% if event.category == 'Other' %}fa-solid fa-ellipsis{% elif event.category == 'Work' %}fa-solid fa-briefcase{% elif event.category == 'Sport' %}fa-solid fa-futbol{% elif event.category == 'Birthday' %}fa-solid fa-birthday-cake{% elif event.category == 'Wedding' %}fa-solid fa-ring{% elif event.category == 'Anniversary' %}fa-solid fa-heart{% elif event.category == 'Concert' %}fa-solid fa-music{% elif event.category == 'Holiday' %}fa-solid fa-umbrella-beach{% endif %}"></i>
                         {{ event.name }}
                     </h2>
                 </div>

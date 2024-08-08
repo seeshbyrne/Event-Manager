@@ -18,7 +18,7 @@
         <p><i class="fa-solid fa-user mr-3"></i><strong> {{ event.user }}</strong> invited you</p>
 
         <p class="text-7xl"> <i class="fa-solid fa-location-dot mr-3"></i> Location: {{ event.location }}</p>
-        <p>Description: {{ event.description }}</p>
+        
 
         <!-- Button for guest list modal -->
         <button type="button" class="text-white guest-list-button" onclick="openGuestListModal()">
@@ -55,7 +55,8 @@
 
         <p><i class="fa-solid fa-lock mr-3"></i> Private : Only guests who are invited</p>
 
-
+        <p class="text-bold">Description:</p>
+        <p>{{ event.description }}</p>
 
         {% if user.id == event.user.id %}
         <div class="event-actions">

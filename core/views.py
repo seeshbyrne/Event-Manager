@@ -109,10 +109,10 @@ def event_index(request):
     query = request.GET.get('q', '')  # Get the search query from the URL
     if query:
         events = Event.objects.filter(
-            Q(name__icontains=query) |  # Search by event name
+            Q(name__icontains=query) |
             Q(date__icontains=query) |
             Q(location__icontains=query) |
-            Q(description__icontains=query) | # Optionally search by description
+            Q(description__icontains=query) |
             Q(category__icontains=query)
         ).distinct().order_by('date')
     else:

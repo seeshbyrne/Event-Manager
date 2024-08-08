@@ -7,19 +7,26 @@
 {% block content %}
 
 <div class="calendar-navigation">
-    <a href="{% url 'calendar' year=year|add:" -1" month=month_number %}" class="button-link"><i
-            class="fa-solid fa-arrow-left"></i> Year</a>
-    <a href="{% url 'calendar' year=year month=month_number|add:" -1" %}" class="button-link"><i
-            class="fa-solid fa-arrow-left"></i> Month</a>
-    <a href="{% url 'calendar' year=year month=month_number|add:" 1" %}" class="button-link">Month <i
-            class="fa-solid fa-arrow-right"></i> </a>
-    <a href="{% url 'calendar' year=year|add:" 1" month=month_number %}" class="button-link">Year <i
-            class="fa-solid fa-arrow-right"></i> </a>
+    <a href="{% url 'calendar' year=year month=month_number|add:" -1" %}" 
+    class="button-link"><i
+    class="fa-solid fa-arrow-left"></i></a>
+    Month
+    <a href="{% url 'calendar' year=year month=month_number|add:" 1" %}" 
+    class="button-link"><i
+    class="fa-solid fa-arrow-right"></i> </a>
+
+    <a href="{% url 'calendar' year=year|add:" -1" month=month_number %}" 
+    class="button-link"><i
+    class="fa-solid fa-arrow-left"></i></a>
+    Year
+    <a href="{% url 'calendar' year=year|add:" 1" month=month_number %}" 
+    class="button-link"><i
+    class="fa-solid fa-arrow-right"></i> </a>
 </div>
 
 <div class="top-container">
-    <a href="{% url 'event-index' %}" class="list-view text-bold">View List <i class="fa-solid fa-list ml-1"></i></a>
-    <div class="exact-day">Today: {{ exact_day }}</div>
+    <a href="{% url 'event-index' %}" class="list-view text-bold">View List <i class="fa-solid fa-list ml-3"></i></a>
+    <!-- <div class="exact-day">Today: {{ exact_day }}</div> -->
 </div>
 
 <div class="calendar-container">
