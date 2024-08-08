@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-@xpg63bhc!3qmjyy2jkj5o0+ul+_j$bi@au=syqu$osmefhum=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eventmanager.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -98,8 +98,6 @@ DATABASES = {
     #     'NAME': 'eventmanagerproject',
     # }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
