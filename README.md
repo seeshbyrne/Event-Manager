@@ -1,6 +1,6 @@
 # EventEase
 
-im ghere
+![welcome image](https://github.com/seeshbyrne/Event-Manager/core/static/images/readme-img.jpg)
 
 ## Event Manager
 
