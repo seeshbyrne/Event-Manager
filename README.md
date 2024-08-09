@@ -1,6 +1,6 @@
 # EventEase
 
-![welcome image](https://github.com/seeshbyrne/Project-Two-Travelblog/assets/169792063/9e217333-83ac-466b-b762-8e4dd32b680d)
+im ghere
 
 ## Event Manager
 
