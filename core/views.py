@@ -2,20 +2,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
-from django.utils import timezone
-
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required # protect view functions
-from django.contrib.auth.mixins import LoginRequiredMixin # protect class based views
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Event, Comment
 from .forms import CommentForm, GuestForm, EventCreateForm
-import calendar
-from calendar import HTMLCalendar, month_name
 
 from django.db.models import Q 
+from django.utils import timezone
+import calendar
+from calendar import HTMLCalendar
 
 # Home
 class Home(LoginView):
@@ -25,7 +24,7 @@ class Home(LoginView):
 def about(request):
     return render(request, 'about.html')
 
-# Calendar
+# Calendar - DISPLAY
 class EventCalendar(HTMLCalendar):
     def formatday(self, day, weekday, events):
         events_per_day = events.filter(date__day=day)
@@ -52,7 +51,6 @@ class EventCalendar(HTMLCalendar):
             s += self.formatday(d, weekday, events)
         return f'<tr> {s} </tr>'
 
-
 # Calendar
 def calendar_view(request, year, month):
     if month < 1:
@@ -65,7 +63,6 @@ def calendar_view(request, year, month):
     cal = EventCalendar().formatmonth(year, month)
     events = Event.objects.filter(date__year=year, date__month=month)
 
-    # Get the exact day for display
     today = timezone.now().date()
     exact_day_number = today.day
     exact_day = today.strftime('%B %d, %Y')
@@ -93,9 +90,6 @@ def signup(request):
             return redirect('event-index')
         else:
             error_message = 'Invalid login - try again'
-            # this would be the last line of the post request
-    # everything here runs IF we had a GET request
-    # OR if the form was invalid
     context = {'form': form, 'error_messsage': error_message}
     return render(request, 'signup.html', context)
 
@@ -106,6 +100,7 @@ def event_index(request):
     current_year = current_date.year
     current_month = current_date.month
 
+    # Search
     query = request.GET.get('q', '')  # Get the search query from the URL
     if query:
         events = Event.objects.filter(
@@ -192,7 +187,6 @@ def delete_comment(request, comment_id):
         event_id = comment.event.id
         comment.delete()
     return redirect('event-detail', event_id=event_id)
-
 
 
 

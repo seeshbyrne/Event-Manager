@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     {% block head %}
     {% endblock %}
 </head>
+
 <body>
     <header>
         <div class="header-logo-container">
@@ -25,7 +27,6 @@
                 <li><a href="{% url 'event-index' %}">All Events</a></li>
                 <li><a href="{% url 'event-create' %}">Add Event</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
-                
                 <li>
                     <form id="logout-form" method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
@@ -39,17 +40,13 @@
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
                 <li><a id="loginBtn" class="btn submit" href="#">Login</a></li>
-                <!-- <li><button id="loginBtn" class="btn submit">Login</button></li> -->
                 {% endif %}
             </ul>
         </nav>
     </header>
+
     <main>
         {% block content %}
-
-
-
-        
         {% endblock %}
     </main>
 
@@ -67,33 +64,6 @@
             </form>
         </div>
     </div>
-
-    <!-- <script>
-        // Get modal element
-        const modal = document.getElementById('loginModal');
-        // Get open modal button
-        const loginBtn = document.getElementById('loginBtn');
-        // Get close button
-        const closeBtn = document.querySelector('.close-btn');
-
-        // Listen for open click
-        loginBtn.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-        });
-
-        // Listen for close click
-        closeBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-
-        // Listen for outside click
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.classList.add('hidden');
-            }
-        });
-    </script> -->
-
 
     <script>
         // Get modal element
@@ -140,8 +110,6 @@
         });
     </script>
     {% endif %}
-
-
 </body>
 
 </html>

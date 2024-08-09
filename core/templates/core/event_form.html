@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="page-header">
+    <img src="{% static 'images/edit-add-img.jpg' %}" alt="party celebration" class="edit-add-background">
     {% if event %}
         <h1 class="text-bold">Edit {{ event.name }}</h1>
     {% else %}    

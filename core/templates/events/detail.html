@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 {% load static tailwind_tags %}
-{% block head %}
 
+{% block head %}
 <link rel="stylesheet" href="{% static 'css/detail.css' %}">
 {% endblock %}
+
 {% block content %}
+
+<div class="event-detail-header">
+    <img src="{% static 'images/detail-img.jpg' %}" alt="party celebration" class="detail-background">
+    <h1 class="font-extrabold">{{ event.name }}</h1>
+</div>
+
+
 
 <a href="{% url 'event-index' %}" class="text-white">
     <i class="fa-solid fa-arrow-left text-white my-5 ml-5 mr-2"></i></i>
@@ -13,13 +21,10 @@
 
 <section class="event-container">
     <div class="event-details">
-        <h1 class="font-extrabold">{{ event.name }}</h1>
-        <h2>{{ event.date|date:"D, F j, Y" }}</h2>
+        <h2 class="font-extrabold event-date-title">{{ event.date|date:"D, F j, Y" }}</h2>
         <p><i class="fa-solid fa-user mr-3"></i><strong> {{ event.user }}</strong> invited you</p>
-
         <p class="text-7xl"> <i class="fa-solid fa-location-dot mr-3"></i> Location: {{ event.location }}</p>
         
-
         <!-- Button for guest list modal -->
         <button type="button" class="text-white guest-list-button" onclick="openGuestListModal()">
             <p class="text-8xl guests-info" id="guestsInfo">
@@ -214,7 +219,7 @@
         }, 300); // Match this duration with the CSS transition duration
     }
 
-    // edit comment 
+    // Edit and Delete comment 
     function showEditForm(commentId) {
         document.getElementById(`comment-content-${commentId}`).classList.add('hidden');
         document.getElementById(`edit-form-${commentId}`).classList.remove('hidden');

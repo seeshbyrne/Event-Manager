@@ -6,35 +6,32 @@
 
 {% block content %}
 
+<!-- Month & Year Naviation  -->
 <div class="calendar-navigation">
-    <a href="{% url 'calendar' year=year month=month_number|add:" -1" %}" 
-    class="button-link"><i
-    class="fa-solid fa-arrow-left"></i></a>
+    <a href="{% url 'calendar' year=year month=month_number|add:" -1" %}" class="button-link"><i
+            class="fa-solid fa-arrow-left"></i></a>
     Month
-    <a href="{% url 'calendar' year=year month=month_number|add:" 1" %}" 
-    class="button-link"><i
-    class="fa-solid fa-arrow-right"></i> </a>
+    <a href="{% url 'calendar' year=year month=month_number|add:" 1" %}" class="button-link"><i
+            class="fa-solid fa-arrow-right"></i> </a>
 
-    <a href="{% url 'calendar' year=year|add:" -1" month=month_number %}" 
-    class="button-link"><i
-    class="fa-solid fa-arrow-left"></i></a>
+    <a href="{% url 'calendar' year=year|add:" -1" month=month_number %}" class="button-link"><i
+            class="fa-solid fa-arrow-left"></i></a>
     Year
-    <a href="{% url 'calendar' year=year|add:" 1" month=month_number %}" 
-    class="button-link"><i
-    class="fa-solid fa-arrow-right"></i> </a>
+    <a href="{% url 'calendar' year=year|add:" 1" month=month_number %}" class="button-link"><i
+            class="fa-solid fa-arrow-right"></i> </a>
 </div>
 
+<!-- Back to list view  -->
 <div class="top-container">
     <a href="{% url 'event-index' %}" class="list-view text-bold">View List <i class="fa-solid fa-list ml-3"></i></a>
-    <!-- <div class="exact-day">Today: {{ exact_day }}</div> -->
 </div>
 
+<!-- Display Calendar -->
 <div class="calendar-container">
     {{ cal|safe }}
 </div>
 
-
-
+<!-- Viewing the events  -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const events = JSON.parse('{{ events|escapejs }}');
