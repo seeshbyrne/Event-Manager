@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'eventmanager.wsgi.application'
 
 DATABASES = {
     'default': 
-    dj_database_url.parse(os.environ.get("postgresql://event_manager_vyci_user:DXNG887Ma2uVSiJRjJ8soX27jKZQ68Sy@dpg-cqq8jdd6l47c73apv2e0-a.singapore-postgres.render.com/event_manager_vyci"))
+    dj_database_url.parse(os.environ.get("DATABASE_URL"))
     {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eventmanagerproject',
