@@ -94,12 +94,14 @@ WSGI_APPLICATION = 'eventmanager.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': 
-    dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eventmanagerproject',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://postgres@localhost:5432/event_manager_vyci',
+        conn_max_age=600
+    )
+    # {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'eventmanagerproject',
+    # }
 }
 
 # Password validation
