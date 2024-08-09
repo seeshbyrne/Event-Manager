@@ -59,4 +59,5 @@ https://unsplash.com/
 ## Next Steps
 
 Enable users to choose a background image for the event they create.
+
 Add a checklist for the event creator for things that need to be completed for the event.

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+.event-container {
+    position: relative;
+    text-align: center; 
+}
+
+.background-img {
+    width: 100%;
+    height: auto;
+    opacity: 75%;
+    display: block;
+}
+
+.overlay-text {
+    position: absolute; /* Positions the text absolutely within the event-container */
+    top: 40%; /* Vertically centers the text */
+    left: 50%; /* Horizontally centers the text */
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    font-size: 60px;
+    font-family: "Raleway", sans-serif;
+    letter-spacing: 2px;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+form input {
+    color: black;
+}

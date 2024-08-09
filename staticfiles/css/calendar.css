@@ -1,0 +1,159 @@
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.button-link:hover {
+    transform: scale(1.5);
+}
+
+.calendar-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Calendar container */
+.calendar-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Table styles for the calendar */
+.calendar-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Header styles for days of the week */
+.calendar-container thead th {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+/* Day cells styles */
+.calendar-container tbody td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: center;
+    vertical-align: top;
+    position: relative;
+    height: 100px; /* Adjust height as needed */
+    width: 14.2%; /* Seven days a week */
+}
+
+/* Add a border to the days of the week */
+.calendar-container tbody tr:first-child td {
+    border-top: 1px solid #ddd;
+}
+
+/* Add a border to the last row */
+.calendar-container tbody tr:last-child td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Event styling within day cells */
+.event {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 0.2rem;
+    padding: 0.2rem;
+}
+
+/* Styling links inside events */
+.event a {
+    text-decoration: none;
+}
+
+.event a:hover {
+    text-decoration: underline;
+}
+
+.day {
+    position: relative;
+}
+
+.current-day span {
+    display: inline-block;
+    padding: 0.5em;
+    border-radius: 50%;
+    background-color: #E0F7FA; /* Light blue background */
+    color: #00796B; /* Dark teal color for the text */
+    font-weight: bold;
+    border: 2px solid #00796B; /* Blue border */
+}
+
+.current-day span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #00796B; /* Blue border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Optional shadow effect */
+    z-index: -1; /* Place the circle behind the number */
+}
+
+.calendar td {
+    background-color: white;
+    color: black;
+    font-weight: 400;
+}
+
+.exact-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.list-view {
+    letter-spacing: 1px;
+    background-color: #7bb377;
+    border: 1px solid #7bb377;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.list-view:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.calendar li {
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(137, 97, 97, 0.8),
+                 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 15px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 255, 255, 0.8);
+}

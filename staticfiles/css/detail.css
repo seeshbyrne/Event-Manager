@@ -1,0 +1,371 @@
+.event-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* event details */
+.event-details h1 {
+    font-size: 2em;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.event-details h2 {
+    font-size: 2em;
+    color: #555;
+    margin-top: 10px;
+    padding-bottom: 8px;
+}
+
+.event-details p {
+    font-size: 1em;
+    color: #666;
+    margin-top: 10px;
+    padding: 5px 0;
+}
+
+/* event actions */
+.event-actions {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.event-actions .btn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    margin-right: 10px;
+    
+}
+
+.add-guest-button {
+    background-color: #7bb377;
+    border: 1px solid #7bb377;
+    border-radius: 5px;
+    height: 39px;
+    width: 39px;
+}
+
+#Addguests {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.add-guest-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.event-actions .btn.warn {
+    background-color: #ff9800;
+    border: 1px solid #e68a00;
+}
+
+.event-actions .btn.danger {
+    background-color: #f44336;
+    border: 1px solid #d32f2f;
+}
+
+.event-actions .btn.warn, 
+.event-actions .btn.danger {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.btn.warn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.btn.danger:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* COMMENTS */
+.comments-container {
+    margin-top: 40px;
+    position: relative;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-form {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    max-width: 600px;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.comment-form button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #822242;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #ff9800; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.comments table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+}
+
+.comments table td {
+    padding: 10px;
+    border: none;
+}
+
+.comment-bubble {
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.comment-bubble::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #f1f1f1 transparent transparent;
+    transform: translateY(-50%);
+}
+
+.comment-bubble .edit {
+    position: absolute;
+    right: 60px;
+    top: 5px;
+}
+
+.comment-bubble .delete {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+#id_comment {
+    color: #333;
+}
+
+.comments table td:first-child {
+    width: 100%;
+}
+
+.comment-user-icon {
+    background-color: #ff9800;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin-right: 10px;
+    position: relative;
+}
+
+.comment-user-icon .tooltip {
+    visibility: hidden;
+    width: auto;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.comment-user-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+form textarea {
+    color: black;
+}
+
+
+/* GUEST  */
+.guest-user-icon {
+    background-color: #ff9800;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin-right: 10px;
+    position: relative;
+}
+
+.guest-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.guest-list-button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: font-size 0.3s ease, font-weight 0.3s ease;
+}
+
+.guest-list-button:hover {
+    font-weight: bold;
+    font-size: 1.01em;
+}
+
+/* Modal Container */
+#guestListModal, #editEventModal {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+/* Modal Container Visible */
+#guestListModal.show, #editEventModal.show {
+    opacity: 1;
+    transform: translateY(0)
+}
+
+.hidden {
+    display: none;
+}
+
+#editEventModal.hidden {
+    opacity: 0;
+}
+
+#editEventModal {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-50px);
+    width: 50%;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-button:hover,
+.invite-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invite-button {
+    margin-top: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+    transition: transform 0.3s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    transform: scale(1.1);
+}
+
+.save-btn:hover {
+    /* background-color:  */
+    color: #b6fcb8;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    /* background-color:  */
+    color: #fca49d;
+    transition: background-color 0.5s ease; 
+}
+
+
+.event-detail-header {
+    position: relative;
+    text-align: center;
+    margin-top: -50px;
+}
+
+.detail-background {
+    width: 100%;
+    height: auto;
+    opacity: 0.7;
+    margin-top: 50px;
+}
+
+
+.event-detail-header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3em;
+    z-index: 1;
+}
