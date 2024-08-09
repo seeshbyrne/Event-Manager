@@ -31,12 +31,19 @@ Plan Ahead: Use the calendar view to see what's coming up and ensure you're prep
 ## Attributions
 
 https://docs.python.org/3.11/library/calendar.html 
+
 https://fontawesome.com/
+
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/ 
+
 https://alexpnt.github.io/2017/07/15/django-calendar/ 
+
 https://tailwindcss.com/ 
+
 https://dribbble.com/ 
+
 https://fonts.google.com/ 
+
 https://unsplash.com/ 
 
 ## Built with
