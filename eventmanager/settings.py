@@ -58,6 +58,8 @@ INTERNAL_IPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -93,7 +95,7 @@ WSGI_APPLICATION = 'eventmanager.wsgi.application'
 
 DATABASES = {
     'default': 
-    # dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    dj_database_url.parse(os.environ.get("postgresql://event_manager_vyci_user:DXNG887Ma2uVSiJRjJ8soX27jKZQ68Sy@dpg-cqq8jdd6l47c73apv2e0-a.singapore-postgres.render.com/event_manager_vyci"))
     {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eventmanagerproject',
@@ -127,9 +129,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
